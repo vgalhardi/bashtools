@@ -18,8 +18,6 @@ fi
 echo Distribuição base = ${DISTRIBUTION}
 echo Gerenciador de pacotes = ${PKGMGR}
 
-exit 0
-
 if [ ${PKGMGR} = 'apt' ]; then
    apt update
    apt upgrade -y
