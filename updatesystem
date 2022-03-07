@@ -1,0 +1,45 @@
+#!/bin/bash
+
+DISTRIBUTION=$(cat /etc/os-release | grep ^"ID_LIKE=" | cut -d = -f 2 | tr -d '"')
+if [ -z ${DISTRIBUTION} ]; then
+   DISTRIBUTION=$(cat /etc/os-release | grep ^"ID=" | cut -d = -f 2 | tr -d '"')
+fi
+if [ ${DISTRIBUTION} = 'debian' ]; then
+   PKGMGR=apt
+elif [ ${DISTRIBUTION} = 'arch' ]; then
+   PKGMGR=pacman
+elif [ ${DISTRIBUTION} = 'fedora' ]; then
+   PKGMGR=yum
+else
+   echo "Distribuição não reconhecida"
+   exit 1
+fi
+
+echo Distribuição base = ${DISTRIBUTION}
+echo Gerenciador de pacotes = ${PKGMGR}
+
+exit 0
+
+if [ ${PKGMGR} = 'apt' ]; then
+   apt update
+   apt upgrade -y
+   apt dist-upgrade -y
+   apt autoremove -y
+   apt clean
+elif [ ${PKGMGR} = 'pacman' ]; then
+   sudo pacman -Syu --noconfirm
+   if [ $? -eq 0 ]; then
+      sudo pacman -Rns $(pacman -Qqdt) --noconfirm
+      sudo pacman -Sc --noconfirm
+      yay -Syu --answerupgrade y --answerclean a --answerdiff n
+   else
+      echo ===
+      echo === Erro na atualização
+      echo ===
+      read -n 1
+   fi
+elif [ ${PKGMGR} = 'yum' ]; then
+   yum update -y
+   yum autoremove -y
+   yum clean all
+fi
