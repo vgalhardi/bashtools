@@ -1,4 +1,6 @@
 #!/bin/bash
+# BashTools - https://github.com/vgalhardi/bashtools
+# Version 2022.10.06
 
 DISTRIBUTION=$(cat /etc/os-release | grep ^"ID_LIKE=" | cut -d = -f 2 | tr -d '"')
 if [ -z ${DISTRIBUTION} ]; then
