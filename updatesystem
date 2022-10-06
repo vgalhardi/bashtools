@@ -29,7 +29,7 @@ elif [ ${PKGMGR} = 'pacman' ]; then
    if [ $? -eq 0 ]; then
       sudo pacman -Rns $(pacman -Qqdt) --noconfirm
       sudo pacman -Sc --noconfirm
-      yay -Syu --answerupgrade y --answerclean a --answerdiff n
+      yay -Syu --answerupgrade y --answerclean a --answerdiff n --removemake --noconfirm
    else
       echo ===
       echo === Erro na atualização
