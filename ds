@@ -1,0 +1,1 @@
+df -h | grep -e ^/dev -e Sist -e Filesystem | grep -v loop
