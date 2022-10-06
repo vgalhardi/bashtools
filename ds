@@ -1,1 +1,5 @@
+#!/bin/bash
+# BashTools - https://github.com/vgalhardi/bashtools
+# Version 2022.10.06
+
 df -h | grep -e ^/dev -e Sist -e Filesystem | grep -v loop
