@@ -1,6 +1,6 @@
 #!/bin/bash
 # BashTools - https://github.com/vgalhardi/bashtools
-# Version 2022.10.06
+# Version 2023.06.29
 
 DISTRIBUTION=$(cat /etc/os-release | grep ^"ID_LIKE=" | cut -d = -f 2 | tr -d '"')
 if [ -z ${DISTRIBUTION} ]; then
@@ -31,7 +31,7 @@ elif [ ${PKGMGR} = 'pacman' ]; then
    if [ $? -eq 0 ]; then
       sudo pacman -Rns $(pacman -Qqdt) --noconfirm
       sudo pacman -Sc --noconfirm
-      yay -Syu --answerupgrade y --answerclean a --answerdiff n --removemake --noconfirm
+      yay -Syu --noconfirm
    else
       echo ===
       echo === Erro na atualização
