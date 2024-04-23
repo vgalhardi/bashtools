@@ -1,6 +1,6 @@
 #!/bin/bash
 # BashTools - https://github.com/vgalhardi/bashtools
-# Version 2023.06.29
+# Version 2024.04.23
 
 DISTRIBUTION=$(cat /etc/os-release | grep ^"ID_LIKE=" | cut -d = -f 2 | tr -d '"')
 if [ -z ${DISTRIBUTION} ]; then
@@ -32,7 +32,7 @@ elif [ ${PKGMGR} = 'pacman' ]; then
       sudo pacman -Rns $(pacman -Qqdt) --noconfirm
       sudo pacman -Sc --noconfirm
       which yay 2>/dev/null
-      if [ "$0" == "0" ]; then
+      if [ "$?" == "0" ]; then
         yay -Syu --answerupgrade y --answerclean a --answerdiff n --removemake --noconfirm
       fi
    else
